@@ -30,7 +30,7 @@ body {
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: var(--purple);
+    background: var(--light);
   }
   
   /* Handle on hover */
