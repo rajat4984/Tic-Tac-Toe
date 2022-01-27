@@ -117,3 +117,92 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+
+/* ----------------------PLAYER-MODAL---------------------------------- */
+
+.opening-modal,.restart-modal{
+  z-index: 10;
+  background-color: var(--light);
+  color: var(--dark);
+  border: 2px solid var(--purple);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 80%;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px var(--purple);
+  padding: 2em;
+}
+
+.player-modal{
+  display: grid;
+  grid-template-columns:repeat(2,1fr);
+  grid-row-gap : 10px;
+  justify-items: center;
+  align-items: center;
+  
+}
+
+.player-modal > .modal-item > input{
+  border: none;
+  margin-bottom: 1em;
+  height: 2em;
+  color: var(--dark);
+  font-size: 1rem;
+}
+
+.player-modal > .modal-item  > label{
+  font-size: 1.5rem;
+}
+
+.submit-btn,.restart-btn{
+  margin-top: 1em;
+  padding: 1em;
+  border-radius: 10px;
+  background-color: var(--light);
+  border: 2px solid var(--purple);
+  cursor: pointer;
+  color: var(--dark);
+  transition: .3s;
+}
+
+.submit-btn:hover,.restart-btn:hover{
+  background-color: var(--purple);
+  color: var(--light);
+}
+
+.overlay,.restart-overlay{
+  position: fixed;
+  top:0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+/* ----------------------------RESTART MODAL ----------------------------------- */
+
+.restart-modal{
+  padding: 3em;
+  display: none;
+}
+
+.restart-overlay{
+  display: none;
+}
+
+.winner-text{
+  font-size: 2rem;
+  color: rgb(11, 165, 11);
+}
+
+.restart-modal > .modal-item > p{
+  font-size: 1.5rem;
+  color: var(--dark);
+  margin: .8em;
+}
