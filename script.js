@@ -1,3 +1,16 @@
+const overlay = document.querySelector(".overlay");
+const submitBtn = document.querySelector(".submit-btn");
+const player1Name = document.querySelector(".player1-input");
+const player2Name = document.querySelector(".player2-input");
+
+const handleSubmit = () => {
+  overlay.style.display = "none";
+  let player1 = players(player1Name.value, "X");
+  let player2 = players(player2Name.value, "O");
+  gameBoard.AddEvent(player1, player2);
+};
+submitBtn.addEventListener("click", handleSubmit);
+
 const gameBoard = (() => {
   const gridItem = document.querySelectorAll(".grid-item");
   const winnerText = document.querySelector(".turn-text-container > p");
@@ -57,22 +70,31 @@ const gameBoard = (() => {
 
   // --------------------------------------EVENT LISTENER FUNCTIONS ----------------------------------------
 
-  const handleGridItem = (player1, player2) => {
-    return (e) => {
-      console.log(player1, player2);
-      let boxNumber = e.target.getAttribute("id");
-      if (e.target.textContent === "" && playerTurn === "X") {
-        winnerText.textContent = `${player2.name}'s Turn (${player2.sign})`;
-        DrawSymbol(e, playerTurn, boxNumber);
-        checkWinner(player1, player2);
-        playerTurn = "O";
-      } else if (e.target.textContent === "" && playerTurn === "O") {
-        winnerText.textContent = `${player1.name}'s Turn (${player1.sign})`;
-        DrawSymbol(e, playerTurn, boxNumber);
-        checkWinner(player1, player2);
-        playerTurn = "X";
-      }
-    };
+  //   item.addEventListener("click", handleGridItem(player1, player2));
+  // //Instead of this you cn write this like
+  //
+  // //In handle grid
+  // {
+  //  //Remove return and execute code directly.
+  //       console.log("In grid")
+  //       let boxNumber = e.target.getAttribute("id");
+  //       if (e.target.textContent === "" && playerTurn === "X")
+
+  const handleGridItem = (player1, player2, e) => {
+    console.log("In grid");
+    console.log(player1, player2);
+    let boxNumber = e.target.getAttribute("id");
+    if (e.target.textContent === "" && playerTurn === "X") {
+      winnerText.textContent = `${player2.name}'s Turn (${player2.sign})`;
+      DrawSymbol(e, playerTurn, boxNumber);
+      checkWinner(player1, player2);
+      playerTurn = "O";
+    } else if (e.target.textContent === "" && playerTurn === "O") {
+      winnerText.textContent = `${player1.name}'s Turn (${player1.sign})`;
+      DrawSymbol(e, playerTurn, boxNumber);
+      checkWinner(player1, player2);
+      playerTurn = "X";
+    }
   };
 
   const handleRestartBtn = () => {
@@ -85,6 +107,7 @@ const gameBoard = (() => {
     console.log("In restart");
     console.log("In restart");
     gridItem.forEach((item) => {
+      item.removeEventListener("click", handleGridItem);
       item.textContent = "";
     });
   };
@@ -92,10 +115,11 @@ const gameBoard = (() => {
   // -------------------------------EVENT LISTENER------------------------------------
 
   const AddEvent = (player1, player2) => {
-    console.log(player1, player2);
     winnerText.textContent = `${player1.name}'s Turn (${player1.sign})`;
     gridItem.forEach((item) => {
-      item.addEventListener("click", handleGridItem(player1, player2));
+      item.addEventListener("click", (e) =>
+        handleGridItem(player1, player2, e)
+      );
     });
     restartBtn.addEventListener("click", handleRestartBtn);
   };
@@ -108,17 +132,3 @@ const players = (name, sign) => {
 };
 
 // ----------------------------------------------------------------------------------
-
-const overlay = document.querySelector(".overlay");
-const submitBtn = document.querySelector(".submit-btn");
-const player1Name = document.querySelector(".player1-input");
-const player2Name = document.querySelector(".player2-input");
-
-const handleSubmit = () => {
-  console.log("hello");
-  overlay.style.display = "none";
-  const player1 = players(player1Name.value, "X");
-  const player2 = players(player2Name.value, "O");
-  gameBoard.AddEvent(player1, player2);
-};
-submitBtn.addEventListener("click", handleSubmit);
