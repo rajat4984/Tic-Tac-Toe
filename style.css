@@ -15,114 +15,107 @@ body {
   color: var(--light);
 }
 
-
 /* -----------------------SCROLLBAR---------------------------- */
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: var(--dark);
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: var(--light);
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--purple)
-  }
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--light);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple);
+}
 
 /* ------------HEADER------------------------------ */
 
-.header{
-    text-align: center;
-    padding: 2%;
-    background-color: var(--purple);
-    color: var(--light);
+.header {
+  text-align: center;
+  padding: 2%;
+  background-color: var(--purple);
+  color: var(--light);
 }
 
-.header > h1{
-    font-size: 3rem;
+.header > h1 {
+  font-size: 3rem;
 }
-
 
 /* ----------------------MIDDLE SECTION----------------------- */
 
-.flex-container{
-    display: flex;
-    justify-content: center;
-    padding: 5%;
+.flex-container {
+  display: flex;
+  justify-content: center;
+  padding: 5%;
 }
 
-.grid-container{
-    border: 2px solid var(--light);
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
+.grid-container {
+  border: 2px solid var(--light);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.grid-item{
-    border: 2px solid;
-    padding: .7em;
-    cursor: pointer;
-    transition: .3s;
-    min-width: 55px;
-    min-height: 55px;
-    text-align: center;
-    font-size: 3rem;
+.grid-item {
+  border: 2px solid;
+  padding: 0.7em;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 55px;
+  min-height: 55px;
+  text-align: center;
+  font-size: 3rem;
 }
 
-.grid-item:hover{
-    background-color: var(--light);
-    color: var(--dark);
-    border: 2px solid var(--dark);
+.grid-item:hover {
+  background-color: var(--light);
+  color: var(--dark);
+  border: 2px solid var(--dark);
 }
-
 
 /* ---------------------------TURN TEXT-------------------------------- */
 
-.turn-text-container{
-    display: flex;
-    justify-content: center;
-    padding-bottom: 3%;
+.turn-text-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3%;
 }
 
-.turn-text-container > p{
-    font-size: 2rem;
+.turn-text-container > p {
+  font-size: 2rem;
 }
-
 
 /* --------------------------------FOOTER--------------------------------------- */
 
-
-.footer-container{
-    display: flex;
-    justify-content: center;
-    background-color: var(--purple);
-    padding: 2%
+.footer-container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--purple);
+  padding: 2%;
 }
 
-.footer-container > p{
-    font-size: 1.3rem;
+.footer-container > p {
+  font-size: 1.3rem;
 }
 
-.footer-container > p > a{
-    color: var(--light);
-    text-decoration: none;
-    cursor: pointer;
+.footer-container > p > a {
+  color: var(--light);
+  text-decoration: none;
+  cursor: pointer;
 }
-
-
 
 /* ----------------------PLAYER-MODAL---------------------------------- */
 
-.opening-modal,.restart-modal{
+.opening-modal,
+.restart-modal {
   z-index: 10;
   background-color: var(--light);
   color: var(--dark);
@@ -130,7 +123,7 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   max-width: 80%;
   text-align: center;
   border-radius: 15px;
@@ -138,16 +131,15 @@ body {
   padding: 2em;
 }
 
-.player-modal{
+.player-modal {
   display: grid;
-  grid-template-columns:repeat(2,1fr);
-  grid-row-gap : 10px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 10px;
   justify-items: center;
   align-items: center;
-  
 }
 
-.player-modal > .modal-item > input{
+.player-modal > .modal-item > input {
   border: none;
   margin-bottom: 1em;
   height: 2em;
@@ -155,11 +147,12 @@ body {
   font-size: 1rem;
 }
 
-.player-modal > .modal-item  > label{
+.player-modal > .modal-item > label {
   font-size: 1.5rem;
 }
 
-.submit-btn,.restart-btn{
+.submit-btn,
+.restart-btn {
   margin-top: 1em;
   padding: 1em;
   border-radius: 10px;
@@ -167,42 +160,41 @@ body {
   border: 2px solid var(--purple);
   cursor: pointer;
   color: var(--dark);
-  transition: .3s;
+  transition: 0.3s;
 }
 
-.submit-btn:hover,.restart-btn:hover{
+.submit-btn:hover,
+.restart-btn:hover {
   background-color: var(--purple);
   color: var(--light);
 }
 
-.overlay,.restart-overlay{
+.overlay,
+.restart-overlay {
   position: fixed;
-  top:0;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-
 /* ----------------------------RESTART MODAL ----------------------------------- */
 
-.restart-modal{
+.restart-modal {
   padding: 3em;
+}
+
+.restart-overlay {
   display: none;
 }
 
-.restart-overlay{
-  display: none;
-}
-
-.winner-text{
-  font-size: 2rem;
-  color: rgb(11, 165, 11);
-}
-
-.restart-modal > .modal-item > p{
+.restart-modal > .modal-item > p {
   font-size: 1.5rem;
   color: var(--dark);
-  margin: .8em;
+  margin: 0.8em;
+}
+
+.winner-text {
+  font-size: 2rem;
 }
