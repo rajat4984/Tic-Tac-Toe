@@ -24,6 +24,12 @@ const handleSubmitBtn = () => {
   let restartOverlay = document.querySelector(".restart-overlay");
   let winnerText = document.querySelector(".winner-text");
   let restartBtn = document.querySelector(".restart-btn");
+  let cancelBtn = document.querySelector(".cancel-btn");
+
+  cancelBtn.addEventListener("click",()=>{
+      restartOverlay.style.display = "none"
+  })
+
 
   const restartGame = (text) => {
     restartOverlay.style.display = "block";
@@ -110,7 +116,7 @@ const handleSubmitBtn = () => {
           turnText.textContent = `${player2.getName()}'s Turn (${player2.getSign()})`;
           gameBoard.updateArray(player1, index, checkFirst);
           if (gameBoard.checkWinner(playerTurn, turnText)) {
-            turnText.textContent = `${player1.getName()} won the game`;
+            turnText.textContent = `${player1.getName()} won the game!`;
             removeListener();
             restartGame(turnText.textContent);
           }
@@ -119,7 +125,7 @@ const handleSubmitBtn = () => {
           turnText.textContent = `${player1.getName()}'s Turn (${player1.getSign()})`;
           gameBoard.updateArray(player2, index, checkSecond);
           if (gameBoard.checkWinner(playerTurn, turnText)) {
-            turnText.textContent = `${player2.getName()} won the game`;
+            turnText.textContent = `${player2.getName()} won the game!`;
             removeListener();
             restartGame(turnText.textContent);
           }

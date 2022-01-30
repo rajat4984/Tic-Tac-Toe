@@ -56,6 +56,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 5%;
+  padding-top: 3%;
 }
 
 .grid-container {
@@ -86,7 +87,8 @@ body {
 .turn-text-container {
   display: flex;
   justify-content: center;
-  padding-bottom: 3%;
+  padding: 3% 3% 0 3%;
+  text-align: center;
 }
 
 .turn-text-container > p {
@@ -152,7 +154,7 @@ body {
 }
 
 .submit-btn,
-.restart-btn {
+.restart-btn,.cancel-btn {
   margin-top: 1em;
   padding: 1em;
   border-radius: 10px;
@@ -164,7 +166,8 @@ body {
 }
 
 .submit-btn:hover,
-.restart-btn:hover {
+.restart-btn:hover,
+.cancel-btn:hover{
   background-color: var(--purple);
   color: var(--light);
 }
@@ -195,6 +198,12 @@ body {
   margin: 0.8em;
 }
 
+.btn-container{
+  display: flex;
+  justify-content: space-around;
+}
+
 .winner-text {
   font-size: 2rem;
+  color: green;
 }
