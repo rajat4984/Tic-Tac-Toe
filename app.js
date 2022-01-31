@@ -1,22 +1,21 @@
+// -------------------GLOBAL VARIABLES-------------------------------
 let submitBtn = document.querySelector(".submit-btn");
 let player1Input = document.querySelector(".player1-input");
 let player2Input = document.querySelector(".player2-input");
 
 const players = (name, sign) => {
-  const getName = () => {
-    return name;
-  };
-
-  const getSign = () => {
-    return sign;
-  };
+  const getName = () => name;
+  const getSign = () => sign;
   return { getName, getSign };
 };
+
+// ------------------------------HANDLE SUBMIT MODULE PATTERN-------------------------------------
 
 const handleSubmitBtn = () => {
   let overlay = document.querySelector(".overlay");
 
   if (player1Input.value !== "" || player2Input.value !== "") {
+    //CHECKS IF PLAYER NAME IS NOT ENTERED
     overlay.style.display = "none";
   } else {
     return;
@@ -26,10 +25,10 @@ const handleSubmitBtn = () => {
   let restartBtn = document.querySelector(".restart-btn");
   let cancelBtn = document.querySelector(".cancel-btn");
 
-  cancelBtn.addEventListener("click",()=>{
-      restartOverlay.style.display = "none"
-  })
-
+  cancelBtn.addEventListener(
+    "click",
+    () => (restartOverlay.style.display = "none")
+  );
 
   const restartGame = (text) => {
     restartOverlay.style.display = "block";
@@ -53,10 +52,9 @@ const handleSubmitBtn = () => {
       }
     };
 
-    const updateArray = (player, index, checkArray) => {
+    const updateArray = (player, index) => {
       index = Number(index);
       gameArray[index] = player.getSign();
-      checkArray.push([index]);
       makeGrid();
     };
 
@@ -100,12 +98,28 @@ const handleSubmitBtn = () => {
     return { gameArray, gridItem, makeGrid, updateArray, checkWinner };
   })();
 
+  // ----------------------DISPLAY CONTROL -------------------------
+
   const displayControl = (() => {
     let playerTurn = "X";
-    let checkFirst = [];
-    let checkSecond = [];
     let turnText = document.querySelector(".turn-text-container > p");
-    turnText.textContent = `${player1.getName()}'s Turn (${player1.getSign()})`;
+
+    const turnTextChanger = (player) => {
+      turnText.textContent = `${player.getName()}'s Turn (${player.getSign()})`;
+    };
+
+    turnTextChanger(player1);
+
+    const TurnChoser = (currentPlayer, otherPlayer, turnText, index) => {
+      turnTextChanger(otherPlayer);
+      gameBoard.updateArray(currentPlayer, index);
+      if (gameBoard.checkWinner(playerTurn, turnText)) {
+        turnText.textContent = `${currentPlayer.getName()} won the game!`;
+        removeListener();
+        restartGame(turnText.textContent);
+      }
+      playerTurn = otherPlayer.getSign();
+    };
 
     const handleGrid = (e) => {
       if (e.target.textContent !== "") {
@@ -113,24 +127,9 @@ const handleSubmitBtn = () => {
       } else {
         let index = e.target.getAttribute("data-index");
         if (playerTurn === player1.getSign()) {
-          turnText.textContent = `${player2.getName()}'s Turn (${player2.getSign()})`;
-          gameBoard.updateArray(player1, index, checkFirst);
-          if (gameBoard.checkWinner(playerTurn, turnText)) {
-            turnText.textContent = `${player1.getName()} won the game!`;
-            removeListener();
-            restartGame(turnText.textContent);
-          }
-          playerTurn = player2.getSign();
+          TurnChoser(player1, player2, turnText, index);
         } else {
-          turnText.textContent = `${player1.getName()}'s Turn (${player1.getSign()})`;
-          gameBoard.updateArray(player2, index, checkSecond);
-          if (gameBoard.checkWinner(playerTurn, turnText)) {
-            turnText.textContent = `${player2.getName()} won the game!`;
-            removeListener();
-            restartGame(turnText.textContent);
-          } 
-
-          playerTurn = player1.getSign();
+          TurnChoser(player2, player1, turnText, index);
         }
       }
     };
