@@ -128,7 +128,7 @@ const handleSubmitBtn = () => {
             turnText.textContent = `${player2.getName()} won the game!`;
             removeListener();
             restartGame(turnText.textContent);
-          }
+          } 
 
           playerTurn = player1.getSign();
         }
